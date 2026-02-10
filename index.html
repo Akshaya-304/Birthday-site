@@ -4,6 +4,7 @@
   <title>Happy Birthday</title>
   <style>
     body {
+      <div class="bg-hearts"></div>
     font-family: 'Segoe UI', Arial, sans-serif;
     text-align: center;
     padding: 50px;
@@ -47,6 +48,55 @@
     opacity: 1;
     transform: translateY(0);
     }
+    .heart {
+  position: fixed;
+  bottom: 40px;
+  font-size: 22px;
+  color: #ec4899;
+  animation: floatUp 2.5s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-180px) scale(1.8);
+  }
+    .bg-hearts::before {
+  content: "🤍 🤍 🤍 🤍 🤍";
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 26px;
+  opacity: 0.15;
+  animation: drift 12s infinite linear;
+}
+
+@keyframes drift {
+  from { transform: translateX(-50%) translateY(0); }
+  to { transform: translateX(-50%) translateY(-40px); }
+  body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.35), transparent 60%),
+              radial-gradient(circle at 70% 80%, rgba(236,72,153,0.25), transparent 60%);
+  animation: glowMove 12s infinite alternate ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes glowMove {
+  from { filter: blur(0px); }
+  to { filter: blur(18px); }
+}
+    button:active {
+  transform: scale(0.96);
+}
   </style>
 </head>
 <body>
@@ -81,8 +131,29 @@
 
   <script>
     function showMessage() {
+    // reveal message
     document.getElementById("message").classList.add("show");
+
+    // floating hearts
+    for (let i = 0; i < 12; i++) {
+      createHeart();
     }
+  }
+
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "🤍";
+
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.animationDuration = (2 + Math.random()) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 2500);
+  }
   </script>
 
 </body>
