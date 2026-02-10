@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Happy Birthday</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      padding: 50px;
+      background: #fff5f8;
+    }
+    #message {
+      display: none;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎉 Happy Birthday! 🎉</h1>
+  <button onclick="showMessage()">Open Message</button>
+
+  <div id="message">
+    <p>
+      This is where YOUR paragraph goes 💖  
+      Write whatever you want here.
+    </p>
+  </div>
+
+  <script>
+    function showMessage() {
+      document.getElementById("message").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
